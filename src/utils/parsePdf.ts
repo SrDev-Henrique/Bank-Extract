@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/utils/parsePdf.ts
 import {
   getDocument,
