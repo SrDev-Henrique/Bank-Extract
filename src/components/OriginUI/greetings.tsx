@@ -7,7 +7,7 @@ export default function Greetings() {
         <AvatarImage src="/images/mae.jpg" />
         <AvatarFallback>EC</AvatarFallback>
       </Avatar>
-      <h1>Olá, Elaine!</h1>
+      <h1>Olá, Mãe!</h1>
     </div>
   );
 }
