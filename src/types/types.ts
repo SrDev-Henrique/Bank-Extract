@@ -10,4 +10,5 @@ export interface Movimentacao {
   descricao: string;
   valor: number;
   tipo: "entrada" | "saida";
+  categoria: string;
 }

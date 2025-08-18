@@ -6,6 +6,49 @@ import {
 } from "pdfjs-dist/legacy/build/pdf.mjs";
 import type { Movimentacao } from "@/types/types";
 import type { TextItem } from "pdfjs-dist/types/src/display/api";
+import {
+  airbnb,
+  massagem,
+  siteDeMassagem,
+  aluguel,
+  roupa,
+  sobrancelha,
+  mercado,
+  autoposto,
+  lenco,
+  aluguelDeSala,
+  costureira,
+  limpezaDePele,
+  cuidadosDePet,
+  receitaFed,
+  planoMovel,
+  contaDeLuz,
+  mei,
+  iof,
+  parafusos,
+  cabeleireiro,
+  dizimo,
+  farmacia,
+  acessorioCelular,
+  telefonia,
+  contaAgua,
+  perfumaria,
+  diversos,
+  saque,
+  cursoOnline,
+  loteria,
+  podologia,
+  causaTrabalhista,
+  pedagio,
+  juros,
+  internet,
+  consultaMedica,
+  recargaCelular,
+  trafegoPago,
+  emprestimo,
+  cartao,
+  alimentacao,
+} from "@/lib/text";
 
 GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
 
@@ -19,6 +62,9 @@ function isTextItem(item: unknown): item is TextItem {
 }
 
 export async function parsePdf(file: File): Promise<Movimentacao[]> {
+  const includes = (source: string, text: string[]) => {
+    return text.some((t) => source.toLowerCase().includes(t.toLowerCase()));
+  };
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await getDocument({ data: arrayBuffer }).promise;
 
@@ -53,6 +99,89 @@ export async function parsePdf(file: File): Promise<Movimentacao[]> {
         descricao: descRaw.trim(),
         valor,
         tipo: valor >= 0 ? ("entrada" as const) : ("saida" as const),
+        categoria: includes(descRaw, airbnb)
+          ? "Airbnb"
+          : includes(descRaw, alimentacao)
+          ? "Alimentação"
+          : includes(descRaw, massagem)
+          ? "Massagem"
+          : includes(descRaw, emprestimo)
+          ? "Empréstimo"
+          : includes(descRaw, cartao)
+          ? "Fatura cartão"
+          : includes(descRaw, siteDeMassagem)
+          ? "Site massagem"
+          : includes(descRaw, aluguel)
+          ? "Aluguel"
+          : includes(descRaw, roupa)
+          ? "Roupas"
+          : includes(descRaw, sobrancelha)
+          ? "Sobrancelha"
+          : includes(descRaw, mercado)
+          ? "Mercado"
+          : includes(descRaw, autoposto)
+          ? "Autoposto"
+          : includes(descRaw, lenco)
+          ? "Lenço"
+          : includes(descRaw, aluguelDeSala)
+          ? "Aluguel de sala"
+          : includes(descRaw, costureira)
+          ? "Costureira"
+          : includes(descRaw, limpezaDePele)
+          ? "Limpeza de pele"
+          : includes(descRaw, cuidadosDePet)
+          ? "Cuidados de pet"
+          : includes(descRaw, receitaFed)
+          ? "Receita federal"
+          : includes(descRaw, planoMovel)
+          ? "Plano móvel"
+          : includes(descRaw, contaDeLuz)
+          ? "Conta de luz"
+          : includes(descRaw, mei)
+          ? "MEI"
+          : includes(descRaw, iof)
+          ? "IOF"
+          : includes(descRaw, parafusos)
+          ? "Parafusos"
+          : includes(descRaw, cabeleireiro)
+          ? "Cabeleireiro"
+          : includes(descRaw, dizimo)
+          ? "Dízimo"
+          : includes(descRaw, farmacia)
+          ? "Farmácia"
+          : includes(descRaw, acessorioCelular)
+          ? "Acessório celular"
+          : includes(descRaw, telefonia)
+          ? "Telefonia"
+          : includes(descRaw, contaAgua)
+          ? "Conta de água"
+          : includes(descRaw, perfumaria)
+          ? "Perfumaria"
+          : includes(descRaw, diversos)
+          ? "Diversos"
+          : includes(descRaw, saque)
+          ? "Saque"
+          : includes(descRaw, cursoOnline)
+          ? "Curso online"
+          : includes(descRaw, loteria)
+          ? "Loteria"
+          : includes(descRaw, podologia)
+          ? "Podologia"
+          : includes(descRaw, causaTrabalhista)
+          ? "Causa trabalhista"
+          : includes(descRaw, pedagio)
+          ? "Pedágio"
+          : includes(descRaw, juros)
+          ? "Juros"
+          : includes(descRaw, internet)
+          ? "Internet"
+          : includes(descRaw, consultaMedica)
+          ? "Consulta médica"
+          : includes(descRaw, recargaCelular)
+          ? "Recarga celular"
+          : includes(descRaw, trafegoPago)
+          ? "Trafego pago"
+          : "Demais",
       };
     })
     // Remove lançamentos de “SALDO DO DIA”

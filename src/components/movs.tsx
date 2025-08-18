@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
 import {
@@ -36,6 +36,7 @@ export default function Movs({ movimentacoes, itemsPerPage = 15 }: MovsProps) {
           <TableRow>
             <TableHead>Data</TableHead>
             <TableHead>Descrição</TableHead>
+            <TableHead>Categoria</TableHead>
             <TableHead>Tipo</TableHead>
             <TableHead>Valor</TableHead>
           </TableRow>
@@ -48,6 +49,14 @@ export default function Movs({ movimentacoes, itemsPerPage = 15 }: MovsProps) {
               </TableCell>
               <TableCell className="text-sm max-w-3 sm:max-w-none overflow-x-auto">
                 {mov.descricao}
+              </TableCell>
+              <TableCell>
+                <Badge
+                  variant="outline"
+                  className="bg-accent-foreground/90 text-accent"
+                >
+                  {mov.categoria}
+                </Badge>
               </TableCell>
               <TableCell>
                 <Badge
