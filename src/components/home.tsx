@@ -99,7 +99,7 @@ export default function Content() {
           }
         }}
       />
-      <Total movimentacoes={movimentacoes} />
+      <Total movimentacoes={movimentacoesFiltradas} />
       <MovsFilter
         onFilter={handleFilter}
         onClear={handleClearFilter}
