@@ -1,6 +1,7 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import type { Movimentacao } from "@/types/types";
+import { options } from "@/components/movs-filter";
 
 export interface ExportOptions {
   filename?: string;
@@ -140,6 +141,34 @@ function calculateTotals(movimentacoes: Movimentacao[]) {
   };
 }
 
+function calculateTotalsByCategory(
+  movimentacoes: Movimentacao[],
+  categoria: string
+) {
+  const totalEntradas = movimentacoes
+    .filter((mov) => mov.tipo === "entrada" && categoria.includes(mov.categoria ?? ""))
+    .reduce((sum, mov) => sum + mov.valor, 0);
+
+  const totalSaidas = movimentacoes
+    .filter((mov) => mov.tipo === "saida" && categoria.includes(mov.categoria ?? ""))
+    .reduce((sum, mov) => sum + mov.valor, 0);
+
+  return {
+    totalEntradas,
+    totalSaidas,
+  };
+}
+
+function getTotalsByCategory(movimentacoes: Movimentacao[]) {
+  return options.map((option) => {
+    const totais = calculateTotalsByCategory(movimentacoes, option.value);
+    return {
+      categoria: option.label, // ou option.value se preferir
+      ...totais,
+    };
+  });
+}
+
 /**
  * Exporta movimentações para PDF
  * @param movimentacoes - Lista de movimentações
@@ -220,7 +249,7 @@ export async function exportMovsToPdf(
         cellPadding: 3,
       },
       headStyles: {
-        fillColor: [66, 139, 202], // Azul escuro
+        fillColor: [0, 0, 0], // Preto
         textColor: [255, 255, 255],
         fontStyle: "bold",
       },
@@ -237,6 +266,36 @@ export async function exportMovsToPdf(
       margin: { top: 20, right: 14, bottom: 30, left: 14 }, // bottom espaço para rodapé
       // NOTE: NÃO desenhamos rodapé aqui porque o pageCount pode não ser final.
       // Em vez disso, vamos adicionar rodapés após o autoTable (pós-processamento).
+    });
+
+    const totalsByCategory = getTotalsByCategory(filteredMovs);
+
+    autoTable(doc, {
+      head: [["Categoria", "Entradas", "Saídas"]],
+      body: totalsByCategory.map((t) => [
+        t.categoria,
+        formatCurrencyToBR(t.totalEntradas),
+        formatCurrencyToBR(t.totalSaidas),
+      ]),
+      startY: (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 10, // coloca logo abaixo da primeira tabela
+      styles: {
+        fontSize: 8,
+        cellPadding: 3,
+      },
+      headStyles: {
+        fillColor: [50, 50, 50],
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+      },
+      columnStyles: {
+        0: { cellWidth: 60 }, // Categoria
+        1: { cellWidth: 40, halign: "right" }, // Entradas
+        2: { cellWidth: 40, halign: "right" }, // Saídas
+        3: { cellWidth: 40, halign: "right" }, // Saldo
+      },
+      alternateRowStyles: {
+        fillColor: [245, 245, 245],
+      },
     });
 
     // --- Pós-processamento: adicionar rodapé "Página X de Y" em todas as páginas ---

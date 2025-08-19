@@ -187,8 +187,6 @@ export async function parsePdf(file: File): Promise<Movimentacao[]> {
     // Remove lançamentos de “SALDO DO DIA”
     .filter((m) => !/SALDO DO DIA/i.test(m.descricao));
 
-  // Debug: quantas linhas extraímos e quais totais
-  console.log("Lançamentos capturados:", movs.length);
   const totais = movs.reduce(
     (acc, x) => {
       if (x.valor >= 0) acc.entradas += x.valor;

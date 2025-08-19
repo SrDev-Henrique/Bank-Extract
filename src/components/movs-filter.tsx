@@ -13,7 +13,7 @@ import {
   SelectItem,
 } from "./ui/select";
 
-const options = [
+export const options = [
   { label: "Todas", value: "Todas" },
   { label: "Airbnb", value: "Airbnb" },
   { label: "Alimentação", value: "Alimentação" },
