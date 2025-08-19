@@ -10,6 +10,7 @@ import { Switch } from "./ui/switch";
 import { Sun, Moon } from "lucide-react";
 import ExportMovsPdf from "./ExportMovsPdf";
 import { useToast } from "@/utils/use-toast";
+import { cn } from "@/lib/utils";
 
 export default function Content() {
   const [movimentacoes, setMovimentacoes] = useState<Movimentacao[] | null>(
@@ -86,6 +87,16 @@ export default function Content() {
       </div>
 
       <Component setMovimentacoes={setMovimentacoes} />
+      <div
+        className={cn(
+          "w-full items-center justify-center p-2 border border-input border-dashed rounded-md",
+          !movimentacoes || movimentacoes.length === 0 ? "flex" : "hidden"
+        )}
+      >
+        <p className="text-sm text-muted-foreground">
+          Carregue um arquivo para começar
+        </p>
+      </div>
       <ExportMovsPdf
         movimentacoes={movimentacoes}
         title="Relatório Janeiro 2024"
@@ -100,12 +111,19 @@ export default function Content() {
         }}
       />
       <Total movimentacoes={movimentacoesFiltradas} />
-      <MovsFilter
-        onFilter={handleFilter}
-        onClear={handleClearFilter}
-        currentFilter={filtro}
-        currentCategory={categoryFilter}
-      />
+      <div
+        className={cn(
+          "w-full",
+          !movimentacoes || movimentacoes.length === 0 ? "hidden" : ""
+        )}
+      >
+        <MovsFilter
+          onFilter={handleFilter}
+          onClear={handleClearFilter}
+          currentFilter={filtro}
+          currentCategory={categoryFilter}
+        />
+      </div>
       <Movs movimentacoes={movimentacoesFiltradas} />
     </div>
   );

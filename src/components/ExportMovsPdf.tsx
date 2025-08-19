@@ -194,7 +194,7 @@ export default function ExportMovsPdf({
   return (
     <div className="space-y-4">
       {/* Botões principais */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 w-full justify-center">
         <button
           type="button"
           onClick={handleExportPdf}
@@ -280,7 +280,7 @@ export default function ExportMovsPdf({
       </div>
 
       {/* Informações sobre o estado */}
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-gray-600 w-full flex justify-center">
         {movimentacoes?.length === 0 ? (
           <p className="text-amber-600 font-medium">
             ⚠️ Nenhuma movimentação disponível para exportação
@@ -299,9 +299,8 @@ export default function ExportMovsPdf({
             ) : (
               <>
                 <span className="font-medium">{movimentacoes?.length}</span>{" "}
-                movimentação{movimentacoes?.length !== 1 ? "ões" : ""}{" "}
-                disponível
-                {movimentacoes?.length !== 1 ? "is" : ""} para exportação
+                movimentaç{movimentacoes?.length !== 1 ? "ões" : "ão"} disponíve
+                {movimentacoes?.length !== 1 ? "is" : "l"} para exportação
               </>
             )}
           </p>

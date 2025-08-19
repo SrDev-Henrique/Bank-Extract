@@ -120,7 +120,7 @@ export default function MovsFilter({
             setValue("category", val);
           }}
         >
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-[200px] text-nowrap overflow-hidden">
             <SelectValue placeholder="Categoria" />
           </SelectTrigger>
           <SelectContent>
