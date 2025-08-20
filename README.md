@@ -37,7 +37,7 @@ O Bank Extract resolve o problema de controle financeiro manual ao automatizar a
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/bank-extract.git
+git clone https://github.com/SrDev-Henrique/bank-extract.git
 cd bank-extract
 
 # Instale as dependências
@@ -103,7 +103,7 @@ npm run dev
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/bank-extract.git
+git clone https://github.com/SrDev-Henrique/bank-extract.git
 cd bank-extract
 ```
 
@@ -604,40 +604,12 @@ console.log("Movimentações:", JSON.stringify(movimentacoes, null, 2));
 #### Removido
 ```
 
-## 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-```
-MIT License
-
-Copyright (c) 2024 Bank Extract
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
 ## 📞 Contato
 
 **👨‍💻 Desenvolvedor**: Henrique Albuquerque  
 **📧 Email**: halbuquerque2850@gmail.com  
 **🌐 Demo**: [henrique-bank-extract.vercel.app](https://henrique-bank-extract.vercel.app/)  
-**💼 GitHub**: [@seu-usuario](https://github.com/seu-usuario)
+**💼 GitHub**: [@SrDev-Henrique](https://github.com/SrDev-Henrique)
 
 ---
 
