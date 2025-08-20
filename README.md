@@ -10,8 +10,7 @@
 
 O Bank Extract resolve o problema de controle financeiro manual ao automatizar a extração de dados de extratos bancários, oferecendo visualização organizada, filtros inteligentes e funcionalidades avançadas de exportação em PDF e CSV com formatação brasileira.
 
-![Screenshot Placeholder](./images/screenshot.png)
-_🖼️ **Screenshot**: Substitua `./assets/screenshot.png` pela captura de tela da aplicação_
+![Screenshot Placeholder](./public/images/screenshot.png)
 
 ## 🧭 Sumário
 
