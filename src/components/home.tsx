@@ -79,7 +79,7 @@ export default function Content() {
     <div className="flex flex-col gap-4 w-full">
       <div className="flex justify-between items-center">
         <h3 className="text-xl font-bold">Tema</h3>
-        <div className="flex itens-center gap-2">
+        <div className="flex items-center gap-2">
           <Sun className="size-4" />
           <Switch checked={isDark} onCheckedChange={toggleTheme} />
           <Moon className="size-4" />
